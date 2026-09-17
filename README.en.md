@@ -18,7 +18,7 @@ Before changing any code, you may spend a long conversation in Codex understandi
 
 No MCP server or whole-repository upload is needed for this file-based workflow. For people building local projects with a coding agent; installation currently uses an agent or CLI.
 
-[Ask your agent to install](#ask-your-agent-to-install) · [See a generated briefing](docs/demo-ai-context.md) · [Connect a real project](INSTALL.md#4-connect-one-real-project-when-requested)
+[Ask your agent to install](#ask-your-agent-to-install) · [Connect a real project](INSTALL.md#4-connect-selected-projects-when-requested)
 
 ## Ask your agent to install
 
@@ -29,7 +29,7 @@ Install https://github.com/xhonye/AI-Context-Linker after reading its INSTALL.md
 Check prerequisites, use an isolated installation, run the built-in demo,
 and open the generated ai_context.md for me.
 Proceed with installation and the synthetic demo; do not scan my real projects or upload.
-Then help me connect one project: handle the configuration and let me review
+Then help me connect my selected projects: handle the configuration and let me review
 which information will be shared and the resulting briefing.
 ```
 
@@ -38,7 +38,7 @@ The [agent installation guide](INSTALL.md) covers prerequisites, installation, v
 **Prefer commands?** With [uv](https://docs.astral.sh/uv/getting-started/installation/) and Git available, uv can provision an isolated Python 3.11 environment:
 
 ```sh
-uv tool install --python 3.11 git+https://github.com/xhonye/AI-Context-Linker.git
+uv tool install --python 3.11 git+https://github.com/xhonye/AI-Context-Linker.git@v0.2.6
 ai-context-linker demo --output-dir ./linker-demo
 ```
 
@@ -46,40 +46,33 @@ Run the demo from a local directory outside repositories. The output directory m
 
 ## After installation: everyday use
 
-Once your own project is connected, tell your agent whenever local progress changes:
+**First time:** tell your agent which projects you want to discuss, using their names or approximate folder locations. It confirms your selection and has Linker generate `ai_context.md` for those projects.
+
+**When projects change**, tell your agent:
 
 > Update ai_context
 
-Your agent reuses the existing configuration, gathers updated information, helps you review the changes, and generates a fresh **`ai_context.md`**. Give that file to ChatGPT and continue the conversation.
-
-Try: “Based on the latest progress, what should I do next?” No reinstall or repeated project introduction is needed. See the [technical workflow](docs/reference.md#quick-start).
+Review the refreshed briefing, then bring it to ChatGPT.
 
 ## How to work with ChatGPT on the web
 
+Open ordinary Chat on the ChatGPT website and upload the latest `ai_context.md`. Alternatively, configure a dedicated Google Drive sync folder and connect it to ChatGPT if supported by your account, avoiding repeated manual uploads.
+
 | What you want to do | How the tools work together |
 |---|---|
-| Decide which project to advance | Linker prepares approved goals, blockers, and next actions for discussion in ChatGPT |
-| Compare options before coding | Share the briefing, discuss trade-offs, and identify missing evidence |
-| Implement the chosen plan | Codex checks the actual code, makes changes, and validates them |
+| “Which project should I advance today?” | Linker supplies reviewed goals, blockers, and next actions; ChatGPT helps compare them |
+| “Help me evaluate the plan before coding.” | Share the briefing and discuss trade-offs and missing evidence |
+| “The direction is clear. Let's build.” | Give the chosen plan to Codex to check against the code, implement, and validate |
 
-Local documents → **Linker briefing** → **ChatGPT discussion** → **Codex verification and implementation**.
+Local documents → **Linker briefing** → **ChatGPT discussion** → **Codex development**.
 
-This can move repeated context-setting and planning out of Codex. Actual savings depend on the task; no quota-saving percentage is promised. Use ordinary Chat for this workflow: [ChatGPT Work shares usage with Codex](https://learn.chatgpt.com/docs/pricing). Agent-assisted preparation and subsequent development have their own usage.
-
-## Use your own project
-
-1. **Choose one project.** Tell your agent its path and which documents may be shared. The agent handles configuration.
-2. **Review the briefing.** Check the project description, goals, blockers, and next actions before approving sharing.
-3. **Bring it to chat.** Upload the reviewed `ai_context.md` and ask what is blocked and what to do next.
-4. **Bring the plan back.** Have Codex check the selected plan against the actual code before implementing and validating it.
-
-Start with manual upload. Optionally place reviewed output in a dedicated synced folder and use a Drive connection supported by your account. **Linker does not log into or automatically upload to Google Drive.**
+Use ordinary Chat here; [ChatGPT Work shares usage with Codex](https://learn.chatgpt.com/docs/pricing).
 
 ## Community conversation
 
 In [his Chinese-language article](https://mp.weixin.qq.com/s/abqrwY1T1WieYW5xDFKRRg), Khazix described planning in ChatGPT and implementing with Codex. I shared my small experiment with file-based project context in the comments and was delighted when he replied “也是个好思路！” (“That's a good approach too!”).
 
-The article's MCP setup queries live production data. Linker prepares a reviewable snapshot of selected project information. It can support a planning discussion; it does not provide live database, log, or runtime-metric access.
+The MCP setup in Khazix's article queries production data on demand, while Linker turns selected project information into a briefing. If your main goal is everyday project planning and discussion, you can start with Linker and explore the workflow that suits you as you go.
 
 Thank you, Khazix, for the encouragement and for helping people discover this small project! I also recommend checking out his open-source [Khazix Skills](https://github.com/KKKKhazix/khazix-skills).
 
@@ -89,7 +82,7 @@ Thank you, Khazix, for the encouragement and for helping people discover this sm
 - New projects are excluded by default. Only explicitly permitted information is collected; source-code bodies and raw conversations are outside the default scan.
 - Sensitive-data checks help, but project descriptions can themselves be sensitive. Review before sharing.
 - Missing progress remains unknown. A briefing does not fill gaps in production data or automatically update every conversation.
-- Default briefings may reference project shards. Enable approved document attachments for a self-contained upload. The built-in demo is already self-contained.
+- During first-project setup, the agent must verify that the briefing contains the project details and selected documents needed for a single-file upload, within your approved scope.
 
 ## Effectiveness evaluation
 
@@ -97,7 +90,7 @@ I previously used GPT-5.6 Sol to read and understand my local projects and produ
 
 **In my own tests, ChatGPT's comparison found the script-generated briefings supported broadly comparable project discussions.** This is my experience with the projects and questions tested, not an independent benchmark or a guarantee for every task. See the [observations and evaluation limits](docs/question-test-observations.md).
 
-**The practical benefit is less time and fewer tokens spent preparing context.** The Python compiler generates the briefing without model calls, avoiding repeated AI reading and synthesis during generation. Agent-assisted evidence preparation, review, and subsequent ChatGPT discussions still have their own usage; no fixed saving percentage is claimed.
+**The practical benefit is less time and fewer tokens spent preparing context.** The Python compiler generates the briefing without model calls, avoiding repeated AI reading and synthesis during generation. Continue discussing your projects in ChatGPT on the web, using its separate chat allowance without consuming your valuable Codex quota.
 
 <details>
 <summary>Earlier anonymized result cards (Chinese)</summary>

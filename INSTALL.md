@@ -11,7 +11,7 @@ not authorize scanning real projects, approving their contents, or uploading fil
 > 请安装 https://github.com/xhonye/AI-Context-Linker ，先阅读仓库的 INSTALL.md。
 > 检查环境，采用隔离安装，再运行内置 demo，把生成的 ai_context.md 打开给我看。
 > 安装和演示可以直接完成；演示不扫描我的真实项目，不上传。
-> 然后告诉我如何选一个真实项目接入，配置由你处理，我只核对分享范围和简报内容。
+> 然后帮我接入选定的真实项目，配置由你处理，我只核对分享范围和简报内容。
 
 ## 1. Check the environment and existing installation
 
@@ -30,13 +30,18 @@ not authorize scanning real projects, approving their contents, or uploading fil
 With uv and Git available:
 
 ```sh
-uv tool install --python 3.11 git+https://github.com/xhonye/AI-Context-Linker.git
+uv tool install --python 3.11 git+https://github.com/xhonye/AI-Context-Linker.git@v0.2.6
 ai-context-linker --help
 ```
 
-For a reproducible install, append `@<reviewed-commit-sha>` to the Git URL, replacing
-the placeholder with an actual verified commit. Do not invent a release or claim a
+The default command installs the stable v0.2.6 release. For a reviewed development
+revision, replace `@v0.2.6` with `@<reviewed-commit-sha>` using an actual verified commit. Do not invent a release or claim a
 PyPI/npm publication. Record the installed source revision when available.
+
+If an existing installation lacks `demo`, explain that it is an older version and
+use the pinned install command with `--reinstall` to update the tool within the
+requested installation scope. Preserve private configuration and generated files.
+Do not treat a successful `--help` alone as proof that the demo is available.
 
 If the tool command is not on PATH, use `uv tool dir --bin` to find its executable
 and call that absolute path for this session. Explain how to reopen the terminal;
@@ -78,17 +83,20 @@ The user may upload the fictional file and ask:
 
 > 按这份演示快照，两个项目各卡在哪里、下一步是什么？缺少依据的地方请标为未知。
 
-## 4. Connect one real project, when requested
+## 4. Connect selected projects, when requested
 
-Ask only for missing scope: the selected project path and which documents may be
-shared. Reuse explicit authorization already given in the conversation. Do not
+Accept project names or an approximate folder range, not only exact paths. Within
+the user-named range, identify candidate locations without collecting document
+bodies, then confirm the intended projects and shareable documents before scanning.
+Do not search the whole disk when the location is unknown; ask for a narrower range. Reuse explicit authorization already given in the conversation. Do not
 request every field separately or ask the user to hand-edit JSON.
 
 1. Read [the configuration example](examples/synthetic-workspace-config.json),
    [the schema](schema/workspace-config.schema.json), and the
    [Chinese first-project guide](docs/quickstart-zh-CN.md). Make private configuration
-   outside repositories and sync folders. Start with **one selected project**;
-   do not discover the whole home/workspace or include skills by default.
+   outside repositories and sync folders. Include **only the explicitly selected projects**;
+   if several are selected, do not silently reduce the scope to one. Do not discover
+   the whole home/workspace or include skills by default.
 2. Present the selected documents and intended sharing scope in plain language.
    Missing permission remains `deny`. For a single upload that must contain the
    selected documents, set `attach_files` to the approved subset of `allow_files`.
@@ -100,7 +108,14 @@ request every field separately or ask the user to hand-edit JSON.
 4. After explicit approval of the concrete candidate/version, record it with
    `approve-snapshot`, then `build` into a dedicated output directory. Follow the
    [reference](docs/reference.md#quick-start); do not bypass failing checks.
-5. Open `ai_context.md` and show what it contains. Let the user share the reviewed
+5. Verify **single-file readiness**, not just command success: `ai_context.md` must
+   contain the selected projects' cards and approved document bodies needed for
+   discussion. Inspect the file; links into local `projects/` files do not make those
+   details available to a web chat. With the current compiler, approved attachments
+   trigger self-contained output. Never invent attachments or broaden permissions
+   to pass this check. If no suitable document is approved, explain the missing
+   input and ask for one minimal reviewable project note; do not claim readiness.
+6. Open the complete `ai_context.md` and show what it contains. Let the user share the reviewed
    file manually first. Drive setup is optional and separate; do not claim Linker
    has authenticated, uploaded, or verified cloud sync.
 
@@ -109,10 +124,22 @@ projects using the existing private configuration. Locate that configuration fro
 the installation handoff; if it is unavailable, ask for its location rather than
 scanning unrelated directories. Scan the changes, preserve previous approval
 history, and review the new candidate before recording approval and building it.
-Report the updated `ai_context.md` path for the user to share. Installing once does not
+Recheck single-file readiness and report the updated `ai_context.md` path for the user to share. Installing once does not
 make subsequent conversations or local changes automatically available to Chat.
 
 ## 5. Handoff and removal
+
+After real-project setup, create `LOCAL-SETUP.md` beside the private configuration,
+outside repositories and sync folders. Use the [handoff template](docs/local-setup-template.md).
+Fill in the actual installed command, source version, configuration, review,
+approval-history and output paths, approved project/document scope, and any remaining
+prerequisite. Preserve an existing note's user content; update only verified fields.
+Do not write raw credentials, global agent memory, or auto-installed Skills.
+
+Show the note's absolute path and tell the user: in a new conversation, say
+“按这份本地使用说明更新 ai_context：<note path>”. The note locates configuration;
+it never serves as approval of new content. Keep it private and upload only the
+reviewed briefing. Do not claim arbitrary agents remember the setup automatically.
 
 Report the installed command path, source revision if known, demo output path,
 private configuration path if created, and any remaining prerequisite. Clearly
