@@ -104,8 +104,12 @@ request every field separately or ask the user to hand-edit JSON.
    file manually first. Drive setup is optional and separate; do not claim Linker
    has authenticated, uploaded, or verified cloud sync.
 
-For future refreshes, reuse the private configuration, scan the changes, preserve
-previous approval history, and review the new candidate. Installing once does not
+Treat “更新 ai_context” or “Update ai_context” as a request to refresh the connected
+projects using the existing private configuration. Locate that configuration from
+the installation handoff; if it is unavailable, ask for its location rather than
+scanning unrelated directories. Scan the changes, preserve previous approval
+history, and review the new candidate before recording approval and building it.
+Report the updated `ai_context.md` path for the user to share. Installing once does not
 make subsequent conversations or local changes automatically available to Chat.
 
 ## 5. Handoff and removal

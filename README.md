@@ -65,15 +65,23 @@ This can move repeated context-setting and planning out of Codex. Actual savings
 
 Start with manual upload. Optionally place reviewed output in a dedicated synced folder and use a Drive connection supported by your account. **Linker does not log into or automatically upload to Google Drive.**
 
-When project information changes, regenerate and review the briefing, then have the chat read the new version. See the [technical workflow](docs/reference.md#quick-start).
+## After installation: everyday use
+
+Once your own project is connected, tell your agent whenever local progress changes:
+
+> Update ai_context
+
+Your agent reuses the existing configuration, gathers updated information, helps you review the changes, and generates a fresh **`ai_context.md`**. Give that file to ChatGPT and continue the conversation.
+
+Try: “Based on the latest progress, what should I do next?” No reinstall or repeated project introduction is needed. See the [technical workflow](docs/reference.md#quick-start).
 
 ## Community conversation
 
-In [his Chinese-language article](https://mp.weixin.qq.com/s/abqrwY1T1WieYW5xDFKRRg), Khazix described planning in ChatGPT and implementing with Codex. I shared this file-based context approach in the comments; he replied “也是个好思路！” (“That's a good approach too!”). See the [comment screenshot](docs/assets/khazix-comment-20260917.png).
+In [his Chinese-language article](https://mp.weixin.qq.com/s/abqrwY1T1WieYW5xDFKRRg), Khazix described planning in ChatGPT and implementing with Codex. I shared my small experiment with file-based project context in the comments and was delighted when he replied “也是个好思路！” (“That's a good approach too!”). See the [comment screenshot](docs/assets/khazix-comment-20260917.png).
 
 The article's MCP setup queries live production data. Linker prepares a reviewable snapshot of selected project information. It can support a planning discussion; it does not provide live database, log, or runtime-metric access.
 
-Explore his open-source [Khazix Skills](https://github.com/KKKKhazix/khazix-skills). Thanks for the exchange of ideas; AI Context Linker is independently maintained.
+Thank you, Khazix, for the encouragement and for helping people discover this small project! I also recommend checking out his open-source [Khazix Skills](https://github.com/KKKKhazix/khazix-skills).
 
 ## Scope and privacy
 

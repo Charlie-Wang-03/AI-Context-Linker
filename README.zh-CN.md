@@ -63,15 +63,23 @@ ai-context-linker demo --output-dir ./linker-demo
 
 先用手动上传跑通。需要 Drive 时，再把审核后的输出放到专用同步目录，使用账号支持的连接方式。**Linker 不负责登录或自动上传 Google Drive。**
 
-以后资料有变化，让 agent 重新生成并核对，再让聊天读取新版。详见[中文上手指南](docs/quickstart-zh-CN.md)。
+## 安装好后怎么用？
 
-## 从卡兹克的文章来？
+首次接入自己的项目后，本地项目有了新进展，就跟你的 agent 说：
 
-卡兹克在[这篇文章](https://mp.weixin.qq.com/s/abqrwY1T1WieYW5xDFKRRg)中分享了“ChatGPT 分析规划、Codex 开发执行”的工作流。我在留言区补充了用项目简报衔接上下文的做法，他回复：**“也是个好思路！”**（[留言截图](docs/assets/khazix-comment-20260917.png)）。
+> 更新 ai_context
+
+agent 会沿用已有配置整理最新资料，带你核对变化，再生成新版 **`ai_context.md`**。把这个文件交给 ChatGPT，就可以接着聊了。
+
+比如问：“按最新进展，我下一步应该做什么？”不用重新安装，也不用每次从头介绍项目。详见[中文上手指南](docs/quickstart-zh-CN.md)。
+
+## 从数字生命卡兹克的文章来？
+
+卡神在[这篇文章](https://mp.weixin.qq.com/s/abqrwY1T1WieYW5xDFKRRg)里分享了“ChatGPT 分析规划、Codex 开发执行”的工作流。我也在留言区分享了自己用项目简报衔接上下文的小尝试，没想到收到了卡神的回复：**“也是个好思路！”**（第一次被卡神回复，感动！[留言截图](docs/assets/khazix-comment-20260917.png)）
 
 文章中的 MCP 用来按需查询真实生产数据；Linker 则提供可审阅的项目资料快照。想先带着项目背景聊方案，可以从简报开始；需要最新数据库、日志或运行指标，仍需另接数据来源。
 
-也欢迎看看他的开源项目 [Khazix Skills](https://github.com/KKKKhazix/khazix-skills)。感谢这次思路交流；AI Context Linker 由我独立维护。
+感谢卡神的分享和鼓励，让更多人看到了这个小项目！也推荐大家去看看他的开源项目 [Khazix Skills](https://github.com/KKKKhazix/khazix-skills)。
 
 ## 读取与分享范围
 
