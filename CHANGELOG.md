@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.6 — 2026-09-17
+
+First-run onboarding and documentation release.
+
+- Add `ai-context-linker demo --output-dir <new-directory>` to generate a self-contained briefing from two fictional projects without scanning real files, uploading, or recording real approval. Existing output directories are preserved.
+- Add an agent installation guide covering isolated setup, verification, the first real project, and later “Update ai_context” requests using existing reviewed configuration.
+- Make Chinese the default README, retain the existing Chinese URL and a full English edition, and preserve branding and result cards. Move detailed commands into reference documents.
+- Explain the project briefing → ChatGPT planning → Codex verification and implementation workflow, including the distinction between file snapshots and live production queries.
+- Include demo checks in both source and installed-wheel verification. Real-project collection, approval and rendering semantics are unchanged; this release makes no new model-quality or quota-saving claim.
+
 ## 0.2.5 — 2026-09-08
 
 Selected-evidence release. Public availability is recorded by the GitHub release.
