@@ -324,7 +324,8 @@ def test_synthetic_cli_does_not_import_from_repository_cwd(workflow, repository,
     monkeypatch.setattr(workflow.CommandRunner, "run", run)
     monkeypatch.setattr(workflow, "check_gold_report", lambda *args: None)
     workflow.synthetic_checks(workflow.CommandRunner(tmp_path, {}, []), repository, tmp_path, [sys.executable, "-B"])
-    assert len(calls) == 5 and all(cwd == tmp_path for _, cwd in calls)
+    assert len(calls) == 6 and all(cwd == tmp_path for _, cwd in calls)
+    assert ("synthetic-demo", tmp_path) in calls
 
 
 def test_clean_build_cannot_inherit_real_source_imports(workflow, repository, tmp_path, monkeypatch):

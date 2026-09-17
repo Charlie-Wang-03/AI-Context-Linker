@@ -261,6 +261,7 @@ def synthetic_checks(runner: CommandRunner, repo: Path, output: Path, python: li
     review = output / f"{prefix}synthetic-review"
     bundle = output / f"{prefix}synthetic-bundle"
     for stage, args in [
+        ("demo", ["demo", "--output-dir", output / f"{prefix}synthetic-demo"]),
         ("scan", ["scan", "--config", examples / "synthetic-workspace-config.json", "--review-dir", review]),
         ("build", ["build", "--manifest", review / "candidate-manifest.json", "--output-dir", bundle]),
         ("slice", ["slice", "--manifest", review / "candidate-manifest.json", "--question", "What should I prioritize next?", "--output-dir", bundle]),

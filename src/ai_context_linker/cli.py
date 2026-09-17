@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .architecture_evaluation import build_architecture_evaluation_report
 from .core import ManifestError, build_bundle
+from .demo import build_demo
 from .discovery import discover_workspace
 from .evaluation import build_evaluation_report
 from .gold_evaluation import build_gold_evaluation_report
@@ -21,6 +22,8 @@ def build_parser() -> argparse.ArgumentParser:
         description="Build a privacy-safe project briefing for ChatGPT.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
+    demo = subparsers.add_parser("demo", help="create a synthetic briefing without reading your projects")
+    demo.add_argument("--output-dir", required=True, type=Path, help="new directory for the synthetic demo")
     discover = subparsers.add_parser(
         "discover", help="create a private candidate workspace config from explicit directory roots"
     )
@@ -101,6 +104,13 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        if args.command == "demo":
+            paths = build_demo(args.output_dir)
+            print(paths.markdown.resolve())
+            print("演示已生成 / Synthetic demo ready. No real projects were read or uploaded.")
+            print("打开 ai_context.md 查看结果；这是虚构示例，不是你的项目状态。")
+            print("可上传此演示文件，提问：按演示快照，两个项目各卡在哪里，下一步是什么？")
+            return 0
         if args.command == "discover":
             result = discover_workspace(
                 args.root,
