@@ -1,7 +1,7 @@
-🌐 **English** · [简体中文](README.zh-CN.md)
+🌐 **简体中文** · [English](README.en.md)
 
 <p align="center">
-  <img src="docs/assets/brand-header.svg" width="860" alt="AI Context Linker — purple starlight wordmark and connected-link logo">
+  <img src="docs/assets/brand-header.svg" width="860" alt="AI Context Linker：紫色星光字标与链条标识">
 </p>
 
 <p align="center">
@@ -10,106 +10,113 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License: MIT"></a>
 </p>
 
-**Give ChatGPT the project context. Bring the chosen plan back to Codex.**
+**让 ChatGPT 看懂项目，把 Codex 留给开发执行。**
 
-Before changing any code, you may spend a long conversation in Codex understanding the project, comparing features, or deciding what to tackle first. Switching to ChatGPT means explaining the background and gathering files again.
+代码还没开始改，你已经和 Codex 聊了很久：现状是什么、先做哪个功能、几个项目能不能合并。想换到 ChatGPT 继续讨论，又得重新介绍背景、整理文件。
 
-**AI Context Linker prepares that context.** It turns selected local documents and reviewed project state into `ai_context.md`. Share it with ChatGPT to compare options, then bring the chosen plan to Codex for code-level verification and implementation. Reuse the briefing across project discussions.
+**AI Context Linker 帮你准备这份背景资料。** 把选定的本地项目说明和经核对的进展整理成一份 `ai_context.md`，交给 ChatGPT 分析、比较方案；选好方向后，再让 Codex 核验并实施。换个聊天，也不用从头介绍几个项目。
 
-No MCP server or whole-repository upload is needed for this file-based workflow. For people building local projects with a coding agent; installation currently uses an agent or CLI.
+不用先搭 MCP 服务，也不用上传整个代码仓库。适合用 Codex 等本地 AI agent 做项目的人；目前通过 agent 或命令行安装。
 
-[Ask your agent to install](#ask-your-agent-to-install) · [See a generated briefing](docs/demo-ai-context.md) · [Connect a real project](INSTALL.md#4-connect-one-real-project-when-requested)
+[让 AI agent 帮你安装](#让-ai-agent-帮你安装) · [先看生成的简报](docs/demo-ai-context.md) · [接入第一个项目](docs/quickstart-zh-CN.md)
 
-## Ask your agent to install
+## 让 AI agent 帮你安装
 
-Copy this to an agent that can execute commands on your computer:
+把下面这段复制给能在你电脑上执行命令的 AI agent：
 
 ```text
-Install https://github.com/xhonye/AI-Context-Linker after reading its INSTALL.md.
-Check prerequisites, use an isolated installation, run the built-in demo,
-and open the generated ai_context.md for me.
-Proceed with installation and the synthetic demo; do not scan my real projects or upload.
-Then help me connect one project: handle the configuration and let me review
-which information will be shared and the resulting briefing.
+请安装 https://github.com/xhonye/AI-Context-Linker ，先阅读仓库的 INSTALL.md。
+检查环境，采用隔离安装，再运行内置 demo，把生成的 ai_context.md 打开给我看。
+安装和演示可以直接完成；演示不扫描我的真实项目，不上传。
+然后帮我选一个真实项目接入：配置由你处理，我只核对分享范围和简报内容。
 ```
 
-The [agent installation guide](INSTALL.md) covers prerequisites, installation, verification, failures, and removal. Real project use still requires your selection and content review.
+[安装说明（给 agent）](INSTALL.md)包含环境检查、安装、演示、失败处理和卸载。首次真实使用仍需你指定项目并核对内容。
 
-**Prefer commands?** With [uv](https://docs.astral.sh/uv/getting-started/installation/) and Git available, uv can provision an isolated Python 3.11 environment:
+**自己执行命令？** 需要 [uv](https://docs.astral.sh/uv/getting-started/installation/) 和 Git；uv 可准备 Python 3.11 的隔离环境：
 
 ```sh
 uv tool install --python 3.11 git+https://github.com/xhonye/AI-Context-Linker.git
 ai-context-linker demo --output-dir ./linker-demo
 ```
 
-Run the demo from a local directory outside repositories. The output directory must be new. Open the printed `ai_context.md` path. The fictional demo reads no real projects. The current demo and generated headings are in Chinese.
+从仓库之外的本地目录运行演示，输出目录必须是新的。打开打印出的 `ai_context.md` 即可看到结果。演示使用虚构项目，不读取你的文件。
 
-## Discuss the direction, then implement
+## 先聊清楚，再动手
 
-| What you want to do | How the tools work together |
+| 你现在想做什么 | 怎么配合 |
 |---|---|
-| Decide which project to advance | Linker prepares approved goals, blockers, and next actions for discussion in ChatGPT |
-| Compare options before coding | Share the briefing, discuss trade-offs, and identify missing evidence |
-| Implement the chosen plan | Codex checks the actual code, makes changes, and validates them |
+| “这几个项目，今天先推进哪个？” | Linker 整理已批准的目标、卡点和下一步，ChatGPT 帮你比较 |
+| “先别写代码，帮我看看方案。” | 把简报交给 ChatGPT，先讨论取舍和缺少的证据 |
+| “方向定了，开始做。” | 把选定方案交给 Codex，核对实际代码后实施、验证 |
 
-Local documents → **Linker briefing** → **ChatGPT discussion** → **Codex verification and implementation**.
+本地资料 → **Linker 简报** → **ChatGPT 讨论方案** → **Codex 核验、开发**。
 
-This can move repeated context-setting and planning out of Codex. Actual savings depend on the task; no quota-saving percentage is promised. Use ordinary Chat for this workflow: [ChatGPT Work shares usage with Codex](https://learn.chatgpt.com/docs/pricing). Agent-assisted preparation and subsequent development have their own usage.
+希望少在 Codex 中反复梳理背景、讨论方向，可以从这一步开始。实际节省取决于任务；Linker 不承诺额度节省比例。这里指普通 Chat：[ChatGPT Work 与 Codex 共享用量](https://learn.chatgpt.com/docs/pricing)，整理资料的 agent 和后续开发也有各自用量。
 
-## Use your own project
+## 从演示到自己的项目
 
-1. **Choose one project.** Tell your agent its path and which documents may be shared. The agent handles configuration.
-2. **Review the briefing.** Check the project description, goals, blockers, and next actions before approving sharing.
-3. **Bring it to chat.** Upload the reviewed `ai_context.md` and ask what is blocked and what to do next.
-4. **Bring the plan back.** Have Codex check the selected plan against the actual code before implementing and validating it.
+1. **选一个项目。** 告诉 agent 项目路径和允许分享的文档；它负责配置。
+2. **核对简报。** 检查项目说明、目标、卡点与下一步，确认哪些内容可以分享。
+3. **交给聊天。** 上传审核后的 `ai_context.md`，问“目前卡在哪里，下一步是什么？”
+4. **把方案带回去。** 选定方向后，让 Codex 对照实际代码核验，再实施和验证。
 
-Start with manual upload. Optionally place reviewed output in a dedicated synced folder and use a Drive connection supported by your account. **Linker does not log into or automatically upload to Google Drive.**
+先用手动上传跑通。需要 Drive 时，再把审核后的输出放到专用同步目录，使用账号支持的连接方式。**Linker 不负责登录或自动上传 Google Drive。**
 
-## After installation: everyday use
+## 安装好后怎么用？
 
-Once your own project is connected, tell your agent whenever local progress changes:
+首次接入自己的项目后，本地项目有了新进展，就跟你的 agent 说：
 
-> Update ai_context
+> 更新 ai_context
 
-Your agent reuses the existing configuration, gathers updated information, helps you review the changes, and generates a fresh **`ai_context.md`**. Give that file to ChatGPT and continue the conversation.
+agent 会沿用已有配置整理最新资料，带你核对变化，再生成新版 **`ai_context.md`**。把这个文件交给 ChatGPT，就可以接着聊了。
 
-Try: “Based on the latest progress, what should I do next?” No reinstall or repeated project introduction is needed. See the [technical workflow](docs/reference.md#quick-start).
+比如问：“按最新进展，我下一步应该做什么？”不用重新安装，也不用每次从头介绍项目。详见[中文上手指南](docs/quickstart-zh-CN.md)。
 
-## Community conversation
+## 从数字生命卡兹克的文章来？
 
-In [his Chinese-language article](https://mp.weixin.qq.com/s/abqrwY1T1WieYW5xDFKRRg), Khazix described planning in ChatGPT and implementing with Codex. I shared my small experiment with file-based project context in the comments and was delighted when he replied “也是个好思路！” (“That's a good approach too!”). See the [comment screenshot](docs/assets/khazix-comment-20260917.png).
+卡神在[这篇文章](https://mp.weixin.qq.com/s/abqrwY1T1WieYW5xDFKRRg)里分享了“ChatGPT 分析规划、Codex 开发执行”的工作流。我也在留言区分享了自己用项目简报衔接上下文的小尝试，没想到收到了卡神的回复：**“也是个好思路！”**（第一次被卡神回复，感动！[留言截图](docs/assets/khazix-comment-20260917.png)）
 
-The article's MCP setup queries live production data. Linker prepares a reviewable snapshot of selected project information. It can support a planning discussion; it does not provide live database, log, or runtime-metric access.
+文章中的 MCP 用来按需查询真实生产数据；Linker 则提供可审阅的项目资料快照。想先带着项目背景聊方案，可以从简报开始；需要最新数据库、日志或运行指标，仍需另接数据来源。
 
-Thank you, Khazix, for the encouragement and for helping people discover this small project! I also recommend checking out his open-source [Khazix Skills](https://github.com/KKKKhazix/khazix-skills).
+感谢卡神的分享和鼓励，让更多人看到了这个小项目！也推荐大家去看看他的开源项目 [Khazix Skills](https://github.com/KKKKhazix/khazix-skills)。
 
-## Scope and privacy
+## 读取与分享范围
 
-- The local compiler makes no model API calls and has no third-party Python runtime dependencies. Installation downloads and your agent's own operation are separate.
-- New projects are excluded by default. Only explicitly permitted information is collected; source-code bodies and raw conversations are outside the default scan.
-- Sensitive-data checks help, but project descriptions can themselves be sensitive. Review before sharing.
-- Missing progress remains unknown. A briefing does not fill gaps in production data or automatically update every conversation.
-- Default briefings may reference project shards. Enable approved document attachments for a self-contained upload. The built-in demo is already self-contained.
+- 本地编译器不调用模型 API；零第三方 Python 运行时依赖。安装下载和 agent 自身运行另计。
+- 新项目默认不导出；只收集明确允许的资料，默认不读取源码正文或原始聊天记录。
+- 输出带敏感信息检查，但项目说明本身也可能敏感，分享前仍需核对。
+- 没有记录的进展仍是未知；简报不会自动补齐生产数据，也不会让所有聊天自动更新。
+- 默认简报可能引用项目分片；需要单文件上传时，按指南启用已批准文档附件。内置 demo 已是单文件可读。
 
-## Evidence and limits
+## 效果和边界
 
-In limited maintainer trials, supplying reviewed business details reduced answer omissions. These are not independent benchmarks or guarantees: [observations and limits](docs/question-test-observations.md).
+维护者的有限自用对照中，补齐经核对的业务资料后，回答遗漏有所减少。这不代表独立评测或通用效果保证：[观察与局限](docs/question-test-observations.md)。
 
-Use Linker for project discussion and context handoff. Use an engineering agent for implementation work. Linker does not synchronize all conversations or decide project priorities.
+它适合项目讨论和上下文交接；读取实现、修改代码仍交给工程 agent。它不会实时同步所有聊天，也不替你决定项目优先级。
 
 <details>
-<summary>Earlier anonymized result cards (Chinese)</summary>
+<summary>查看此前的匿名结果卡</summary>
 
-These AI-redrawn cards summarize anonymized observations, not original chat evidence. See the conditions and limitations linked above.
+以下为 AI 重新排版的匿名观察结果，不是原始聊天证据；完整条件与局限见上方说明。
 
-![Round one: missing evidence can lead to redundant development advice](docs/assets/round-1-anonymized.png)
+![第一轮：缺失资料可能导致重复开发建议](docs/assets/round-1-anonymized.png)
 
-![Round two: reviewed business evidence supports more grounded answers](docs/assets/round-2-anonymized.png)
+![第二轮：补齐业务资料后，回答更有依据](docs/assets/round-2-anonymized.png)
 
 </details>
 
-## More
+## 更多资料
 
-[Commands and configuration](docs/reference.md) · [Security boundary](docs/security-boundary.md) · [Architecture](docs/architecture.md) · [Contributing](CONTRIBUTING.md) · [MIT license](LICENSE)
+[详细命令与配置](docs/reference-zh-CN.md) · [安全边界](docs/security-boundary.md) · [架构](docs/architecture.md) · [贡献指南](CONTRIBUTING.md) · [MIT 许可](LICENSE)
 
-Stuck? [Tell us which step failed](https://github.com/xhonye/AI-Context-Linker/issues/new/choose). If it saves you repeated project introductions, a Star helps others find it.
+试用遇到问题？[告诉我们卡在哪一步](https://github.com/xhonye/AI-Context-Linker/issues/new/choose)。如果它确实减少了你重复介绍项目的时间，欢迎点 Star。
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=xhonye%2FAI-Context-Linker&amp;type=date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=xhonye/AI-Context-Linker&amp;type=date&amp;theme=dark&amp;legend=top-left" />
+    <img alt="AI Context Linker Star History" src="https://api.star-history.com/chart?repos=xhonye/AI-Context-Linker&amp;type=date&amp;legend=top-left" />
+  </picture>
+</a>

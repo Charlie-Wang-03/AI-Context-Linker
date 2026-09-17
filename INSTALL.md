@@ -1,6 +1,6 @@
 # Install with your local AI agent
 
-[中文首页](README.zh-CN.md) · [English overview](README.md)
+[中文首页](README.md) · [English overview](README.en.md)
 
 This guide is for a local agent that can run terminal commands. A web chat without
 access to your computer cannot perform this installation. Installing Linker does

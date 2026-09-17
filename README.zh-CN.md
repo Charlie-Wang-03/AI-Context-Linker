@@ -1,4 +1,4 @@
-🌐 [English](README.md) · **简体中文**
+🌐 **简体中文** · [English](README.en.md)
 
 <p align="center">
   <img src="docs/assets/brand-header.svg" width="860" alt="AI Context Linker：紫色星光字标与链条标识">
@@ -111,3 +111,12 @@ agent 会沿用已有配置整理最新资料，带你核对变化，再生成�
 [详细命令与配置](docs/reference-zh-CN.md) · [安全边界](docs/security-boundary.md) · [架构](docs/architecture.md) · [贡献指南](CONTRIBUTING.md) · [MIT 许可](LICENSE)
 
 试用遇到问题？[告诉我们卡在哪一步](https://github.com/xhonye/AI-Context-Linker/issues/new/choose)。如果它确实减少了你重复介绍项目的时间，欢迎点 Star。
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=xhonye%2FAI-Context-Linker&amp;type=date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=xhonye/AI-Context-Linker&amp;type=date&amp;theme=dark&amp;legend=top-left" />
+    <img alt="AI Context Linker Star History" src="https://api.star-history.com/chart?repos=xhonye/AI-Context-Linker&amp;type=date&amp;legend=top-left" />
+  </picture>
+</a>
