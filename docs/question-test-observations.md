@@ -5,6 +5,20 @@ maintainer observations explain why selected documents and behavior notes were
 added. They are not an independent benchmark, a privacy certification or proof
 that Linker can replace another tool for every task.
 
+## Maintainer-reported workflow comparison (2026-09-17)
+
+The maintainer reports previously using GPT-5.6 Sol to read local projects and
+produce Markdown through an AI-driven workflow. After repeated iteration, their
+ChatGPT comparisons found the Python-generated briefings broadly comparable for
+the project discussions tested, with less preparation time and model usage in
+personal use. This account supplies the README's first-person assessment; the
+existing anonymized experiment records below do not independently establish that
+specific baseline model or a quantified time/token saving.
+
+The compiler itself makes no model calls. AI-assisted evidence preparation,
+review, and downstream conversations are separate costs. No new controlled trial
+or full replacement acceptance is asserted by this maintainer report.
+
 ## What the experiments changed
 
 1. In an early comparison, missing business documents caused an answer to suggest
@@ -55,4 +69,4 @@ or automatically invalidate it against underlying implementation changes.
 
 The compiler has no automatic network upload or local-model analysis. Use the
 [synthetic behavior-note template](../examples/behavior-note/README.md) and the
-[document selection workflow](../README.md#include-documents-for-offline-follow-up).
+[document selection workflow](reference.md#include-documents-for-offline-follow-up).

@@ -44,7 +44,17 @@ ai-context-linker demo --output-dir ./linker-demo
 
 Run the demo from a local directory outside repositories. The output directory must be new. Open the printed `ai_context.md` path. The fictional demo reads no real projects. The current demo and generated headings are in Chinese.
 
-## Discuss the direction, then implement
+## After installation: everyday use
+
+Once your own project is connected, tell your agent whenever local progress changes:
+
+> Update ai_context
+
+Your agent reuses the existing configuration, gathers updated information, helps you review the changes, and generates a fresh **`ai_context.md`**. Give that file to ChatGPT and continue the conversation.
+
+Try: “Based on the latest progress, what should I do next?” No reinstall or repeated project introduction is needed. See the [technical workflow](docs/reference.md#quick-start).
+
+## How to work with ChatGPT on the web
 
 | What you want to do | How the tools work together |
 |---|---|
@@ -65,19 +75,9 @@ This can move repeated context-setting and planning out of Codex. Actual savings
 
 Start with manual upload. Optionally place reviewed output in a dedicated synced folder and use a Drive connection supported by your account. **Linker does not log into or automatically upload to Google Drive.**
 
-## After installation: everyday use
-
-Once your own project is connected, tell your agent whenever local progress changes:
-
-> Update ai_context
-
-Your agent reuses the existing configuration, gathers updated information, helps you review the changes, and generates a fresh **`ai_context.md`**. Give that file to ChatGPT and continue the conversation.
-
-Try: “Based on the latest progress, what should I do next?” No reinstall or repeated project introduction is needed. See the [technical workflow](docs/reference.md#quick-start).
-
 ## Community conversation
 
-In [his Chinese-language article](https://mp.weixin.qq.com/s/abqrwY1T1WieYW5xDFKRRg), Khazix described planning in ChatGPT and implementing with Codex. I shared my small experiment with file-based project context in the comments and was delighted when he replied “也是个好思路！” (“That's a good approach too!”). See the [comment screenshot](docs/assets/khazix-comment-20260917.png).
+In [his Chinese-language article](https://mp.weixin.qq.com/s/abqrwY1T1WieYW5xDFKRRg), Khazix described planning in ChatGPT and implementing with Codex. I shared my small experiment with file-based project context in the comments and was delighted when he replied “也是个好思路！” (“That's a good approach too!”).
 
 The article's MCP setup queries live production data. Linker prepares a reviewable snapshot of selected project information. It can support a planning discussion; it does not provide live database, log, or runtime-metric access.
 
@@ -91,11 +91,13 @@ Thank you, Khazix, for the encouragement and for helping people discover this sm
 - Missing progress remains unknown. A briefing does not fill gaps in production data or automatically update every conversation.
 - Default briefings may reference project shards. Enable approved document attachments for a self-contained upload. The built-in demo is already self-contained.
 
-## Evidence and limits
+## Effectiveness evaluation
 
-In limited maintainer trials, supplying reviewed business details reduced answer omissions. These are not independent benchmarks or guarantees: [observations and limits](docs/question-test-observations.md).
+I previously used GPT-5.6 Sol to read and understand my local projects and produce Markdown briefings through an AI-driven workflow. I then iterated on AI Context Linker's pure Python approach and used ChatGPT to compare the resulting briefings for project discussions.
 
-Use Linker for project discussion and context handoff. Use an engineering agent for implementation work. Linker does not synchronize all conversations or decide project priorities.
+**In my own tests, ChatGPT's comparison found the script-generated briefings supported broadly comparable project discussions.** This is my experience with the projects and questions tested, not an independent benchmark or a guarantee for every task. See the [observations and evaluation limits](docs/question-test-observations.md).
+
+**The practical benefit is less time and fewer tokens spent preparing context.** The Python compiler generates the briefing without model calls, avoiding repeated AI reading and synthesis during generation. Agent-assisted evidence preparation, review, and subsequent ChatGPT discussions still have their own usage; no fixed saving percentage is claimed.
 
 <details>
 <summary>Earlier anonymized result cards (Chinese)</summary>
