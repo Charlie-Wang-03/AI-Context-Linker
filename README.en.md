@@ -4,6 +4,8 @@
   <img src="docs/assets/brand-header.svg" width="860" alt="AI Context Linker — purple starlight wordmark and connected-link logo">
 </p>
 
+# AI Context Linker · Local project context for ChatGPT
+
 <p align="center">
   <a href="https://github.com/xhonye/AI-Context-Linker/actions/workflows/ci.yml"><img src="https://github.com/xhonye/AI-Context-Linker/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.11%2B-blue.svg" alt="Python 3.11+"></a>

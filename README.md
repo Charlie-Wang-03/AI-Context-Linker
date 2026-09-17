@@ -4,6 +4,8 @@
   <img src="docs/assets/brand-header.svg" width="860" alt="AI Context Linker：紫色星光字标与链条标识">
 </p>
 
+# AI Context Linker · 让 ChatGPT 看懂你的本地项目
+
 <p align="center">
   <a href="https://github.com/xhonye/AI-Context-Linker/actions/workflows/ci.yml"><img src="https://github.com/xhonye/AI-Context-Linker/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.11%2B-blue.svg" alt="Python 3.11+"></a>
