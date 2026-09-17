@@ -4,7 +4,7 @@
   <img src="docs/assets/brand-header.svg" width="860" alt="AI Context Linker：紫色星光字标与链条标识">
 </p>
 
-# AI Context Linker · 让 ChatGPT 看懂你的本地项目
+<h1 align="center">AI Context Linker · 让 ChatGPT 看懂你的本地项目</h1>
 
 <p align="center">
   <a href="https://github.com/xhonye/AI-Context-Linker/actions/workflows/ci.yml"><img src="https://github.com/xhonye/AI-Context-Linker/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -46,9 +46,9 @@ ai-context-linker demo --output-dir ./linker-demo
 
 ## 安装好后怎么用？
 
-**首次使用：**告诉 agent 你想聊哪些项目，提供项目名称或大概位置。它会帮你确认范围，让 Linker 只整理选定项目，生成 `ai_context.md`。
+首次使用：告诉 agent 你想聊哪些项目，提供项目名称或大概位置。它会帮你确认范围，让 Linker 只整理选定项目，生成 `ai_context.md`。
 
-**项目有新进展时，跟 agent 说：**
+项目有新进展时，跟 agent 说：
 
 > 更新 ai_context
 

@@ -4,7 +4,7 @@
   <img src="docs/assets/brand-header.svg" width="860" alt="AI Context Linker — purple starlight wordmark and connected-link logo">
 </p>
 
-# AI Context Linker · Local project context for ChatGPT
+<h1 align="center">AI Context Linker · Local project context for ChatGPT</h1>
 
 <p align="center">
   <a href="https://github.com/xhonye/AI-Context-Linker/actions/workflows/ci.yml"><img src="https://github.com/xhonye/AI-Context-Linker/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -48,9 +48,9 @@ Run the demo from a local directory outside repositories. The output directory m
 
 ## After installation: everyday use
 
-**First time:** tell your agent which projects you want to discuss, using their names or approximate folder locations. It confirms your selection and has Linker generate `ai_context.md` for those projects.
+First time: tell your agent which projects you want to discuss, using their names or approximate folder locations. It confirms your selection and has Linker generate `ai_context.md` for those projects.
 
-**When projects change**, tell your agent:
+When projects change, tell your agent:
 
 > Update ai_context
 
